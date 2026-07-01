@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --cream: #ECE7DA;
+  --ink: #1A1814;
+  --ink-soft: #242019;
+  --ink-border: #3A3327;
+  --rust: #C84B31;
+  --rust-readable: #A53A26;
+  --rust-on-ink: #F2A08D;
+  --warm-grey: #6B6557;
+  --warm-grey-lt: #A8A290;
+  font-family: var(--font-body), sans-serif;
+  background-color: var(--cream);
+  color: var(--ink);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 22s linear infinite;
+}
+
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 9s linear infinite;
+}
+
+.hero-archive-bg {
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent,
+    transparent 38px,
+    rgba(26, 24, 20, 0.025) 38px,
+    rgba(26, 24, 20, 0.025) 39px
+  );
+}
+
+.hero-halftone {
+  background-image: radial-gradient(circle, var(--rust) 1.5px, transparent 1.5px);
+  background-size: 10px 10px;
+  mask-image: linear-gradient(135deg, transparent 0%, black 35%, black 100%);
+}
+
+.section-title {
+  font-size: clamp(3.25rem, 18vw, 6rem);
+}
+
+.touch-pan-y {
+  touch-action: pan-y;
+}
+
+.bento .card {
+  grid-column: span var(--card-col) / span var(--card-col);
+  grid-row: span var(--card-row) / span var(--card-row);
+}
+
+.text-rust {
+  color: var(--rust-readable);
+}
+
+.bg-rust {
+  background-color: var(--rust-readable);
+}
+
+.border-rust {
+  border-color: var(--rust-readable);
+}
+
+.bg-ink .text-rust,
+.bg-ink-soft .text-rust {
+  color: var(--rust-on-ink);
+}
+
+@media (max-width: 640px) {
+  .animate-marquee {
+    animation-duration: 30s;
+  }
+
+  .hero-archive-bg {
+    background-size: 72px 72px;
+  }
+
+  .hero-halftone {
+    height: 13rem;
+    width: 13rem;
+    opacity: 0.12;
+  }
+
+  .section-title {
+    font-size: clamp(3rem, 17vw, 4.5rem);
+  }
+
+  .bento .card {
+    grid-column: span 6 / span 6;
+    grid-row: span 1 / span 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+::selection {
+  background: rgba(200, 75, 49, 0.18);
+}
